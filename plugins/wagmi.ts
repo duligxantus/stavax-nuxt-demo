@@ -1,8 +1,8 @@
-import {QueryClient, VueQueryPlugin} from '@tanstack/vue-query';
-import {walletConnect}               from '@wagmi/connectors';
-import {createConfig, http}          from '@wagmi/core';
-import {baseSepolia}                 from '@wagmi/core/chains';
-import {WagmiPlugin}                 from '@wagmi/vue';
+import {QueryClient, VueQueryPlugin}                from '@tanstack/vue-query';
+import {walletConnect}                              from '@wagmi/connectors';
+import {createConfig, type CreateConnectorFn, http} from '@wagmi/core';
+import {baseSepolia}                                from '@wagmi/core/chains';
+import {WagmiPlugin}                                from '@wagmi/vue';
 
 export default defineNuxtPlugin((app) => {
   const publicConfig = useRuntimeConfig().public;
@@ -25,7 +25,7 @@ export default defineNuxtPlugin((app) => {
             universal: 'https://t.me/stv_nuxt_demo_bot',
           },
         },
-      }),
+      }) as CreateConnectorFn,
     ],
     transports: {
       [baseSepolia.id]: http(),
